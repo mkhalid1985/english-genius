@@ -95,16 +95,14 @@ export const WordSearch: React.FC<WordSearchProps> = ({ words, onComplete }) => 
 
     const handleInteractionEnd = () => {
         setIsMouseDown(false);
+        // Simply join selected letters
         const selectedString = selection.map(p => grid[p.row][p.col]).join('');
         const reversedString = [...selectedString].reverse().join('');
         
         for (const word of words) {
             if (word.toLowerCase() === selectedString || word.toLowerCase() === reversedString) {
-                const solutionPath = solutions[word.toLowerCase()];
-                
-                const isCorrectLength = selection.length === word.length;
-                
-                if (isCorrectLength) {
+                // Basic validation: check if length matches the word
+                if (selection.length === word.length) {
                     setFoundWords(prev => new Set(prev).add(word));
                 }
             }
