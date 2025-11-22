@@ -101,8 +101,7 @@ export const WordSearch: React.FC<WordSearchProps> = ({ words, onComplete }) => 
         for (const word of words) {
             if (word.toLowerCase() === selectedString || word.toLowerCase() === reversedString) {
                 const solutionPath = solutions[word.toLowerCase()];
-                // Verify path matches exactly (ignoring direction for simplicity in check, but strictly should match solution)
-                // Simple check: length matches and start/end match
+                
                 const isCorrectLength = selection.length === word.length;
                 
                 if (isCorrectLength) {
@@ -148,7 +147,6 @@ export const WordSearch: React.FC<WordSearchProps> = ({ words, onComplete }) => 
                                 onMouseDown={() => handleInteractionStart(rIndex, cIndex)}
                                 onMouseEnter={() => handleInteractionMove(rIndex, cIndex)}
                                 onTouchStart={() => handleInteractionStart(rIndex, cIndex)}
-                                // Touch move logic requires calculating element from coordinates, omitted for brevity but start/end works for click-drag
                             >
                                 {cell}
                             </div>
