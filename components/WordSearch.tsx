@@ -79,7 +79,10 @@ export const WordSearch: React.FC<WordSearchProps> = ({ words, onComplete }) => 
     
     useEffect(() => {
         if(foundWords.size === words.length && words.length > 0) {
-            setTimeout(onComplete, 1500);
+            const timer = setTimeout(() => {
+                onComplete();
+            }, 1500);
+            return () => clearTimeout(timer);
         }
     }, [foundWords, words, onComplete]);
 
@@ -101,9 +104,8 @@ export const WordSearch: React.FC<WordSearchProps> = ({ words, onComplete }) => 
         for (const word of words) {
             if (word.toLowerCase() === selectedString || word.toLowerCase() === reversedString) {
                 const solutionPath = solutions[word.toLowerCase()];
-                const isCorrectLength = selection.length === word.length;
-                
-                if (isCorrectLength) {
+                // Check if the path roughly matches length
+                if (selection.length === word.length) {
                     setFoundWords(prev => new Set(prev).add(word));
                 }
             }
