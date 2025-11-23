@@ -1,10 +1,8 @@
 import React from 'react';
-
 interface WordSearchProps {
   words: string[];
   onComplete: () => void;
 }
-
 export const WordSearch: React.FC<WordSearchProps> = ({ onComplete }) => {
     return (
         <div className="text-center p-8 bg-white rounded-xl shadow-lg">
