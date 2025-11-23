@@ -3,14 +3,14 @@ import { Curriculum } from '../types';
 import { spellingWords, SpellingLevel } from '../spellingData';
 import { WordScrambleSpelling } from './WordScrambleSpelling';
 import { Hangman } from './Hangman';
-import { WordSearch } from './WordSearch';
+// REMOVED WordSearch import
 
 interface SpellingStationProps {
   onComplete: () => void;
   curriculum: Curriculum;
 }
 
-type GameType = 'wordScramble' | 'hangman' | 'wordSearch';
+type GameType = 'wordScramble' | 'hangman'; // Removed wordSearch
 
 const GameCard: React.FC<{ title: string; description: string; selected: boolean; onClick: () => void; }> = ({ title, description, selected, onClick }) => (
     <button
@@ -53,7 +53,6 @@ export const SpellingStation: React.FC<SpellingStationProps> = ({ onComplete, cu
         const gameProps = { words: gameWords, onComplete: handleGameComplete };
         if (gameType === 'wordScramble') return <WordScrambleSpelling {...gameProps} />;
         if (gameType === 'hangman') return <Hangman {...gameProps} />;
-        if (gameType === 'wordSearch') return <WordSearch {...gameProps} />;
     }
     
     if (view === 'setup' && level) {
@@ -71,7 +70,6 @@ export const SpellingStation: React.FC<SpellingStationProps> = ({ onComplete, cu
                             <div className="space-y-2">
                                 <GameCard title="Word Scramble" description="Unscramble the letters to spell the word." selected={gameType === 'wordScramble'} onClick={() => setGameType('wordScramble')} />
                                 <GameCard title="Hangman" description="Guess the word one letter at a time." selected={gameType === 'hangman'} onClick={() => setGameType('hangman')} />
-                                <GameCard title="Word Search" description="Find the hidden words in a grid of letters." selected={gameType === 'wordSearch'} onClick={() => setGameType('wordSearch')} />
                             </div>
                         </div>
 
