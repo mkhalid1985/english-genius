@@ -3,14 +3,13 @@ import { Curriculum } from '../types';
 import { spellingWords, SpellingLevel } from '../spellingData';
 import { WordScrambleSpelling } from './WordScrambleSpelling';
 import { Hangman } from './Hangman';
-// REMOVED WordSearch import
 
 interface SpellingStationProps {
   onComplete: () => void;
   curriculum: Curriculum;
 }
 
-type GameType = 'wordScramble' | 'hangman'; // Removed wordSearch
+type GameType = 'wordScramble' | 'hangman';
 
 const GameCard: React.FC<{ title: string; description: string; selected: boolean; onClick: () => void; }> = ({ title, description, selected, onClick }) => (
     <button
